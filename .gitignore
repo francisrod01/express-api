@@ -29,3 +29,7 @@ node_modules
 
 # Npm lock files
 yarn.lock
+data/mongodb.config
+data/BstDstnyExpressApi
+data/logs
+!data/logs/.empty
