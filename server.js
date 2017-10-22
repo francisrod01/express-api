@@ -26,8 +26,16 @@ router.use(function (req, res, next) {
 
 
 //- Database and Bear model.
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o')
+const MongoClient = require('mongodb').MongoClient
+let database
+
+MongoClient.connect('mongodb://localhost:27017/BstDstnyExpressApi', function (err, _database) {
+    if (err) throw err
+
+    console.log('Connected to database: ' + _database.databaseName)
+
+    database = _database
+})
 
 // Using our models.
 const Bear = require('./app/models/bear')
