@@ -12,9 +12,9 @@
   "author": "Francis Rodrigues <github.com/francisrod01>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "~1.18.2",
     "express": "~4.16.1",
-    "morgan": "~1.9.0",
     "mongoose": "~4.11.14",
-    "body-parser": "~1.18.2"
+    "morgan": "^1.9.0"
   }
 }
