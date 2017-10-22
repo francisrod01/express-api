@@ -16,6 +16,17 @@ const port = process.env.PORT || 3030 // set our port
 const router = express.Router() // get an instance of the express Router
 
 
+
+//- Database and Bear model.
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o')
+
+// Using our models.
+const Bear = require('./app/models/bear')
+
+
+
+
 // Test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function (req, res) {
     res.json({message: 'hooray! Welcome to our API!'})
