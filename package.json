@@ -1,0 +1,13 @@
+{
+  "name": "express-api",
+  "version": "0.0.1",
+  "main": "server.js",
+  "author": "Francis Rodrigues",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.4"
+  }
+}
