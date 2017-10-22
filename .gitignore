@@ -2,3 +2,7 @@
 .idea/
 node_modules/
 yarn.lock
+data/mongodb.config
+data/BstDstnyExpressApi
+data/logs
+!data/logs/.empty
