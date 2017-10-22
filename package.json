@@ -1,5 +1,6 @@
 {
-  "name": "node-api",
+  "name": "express-api",
+  "version": "0.0.1",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -8,12 +9,12 @@
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Chris Sevilleja <scotch.io>",
+  "author": "Francis Rodrigues <github.com/francisrod01>",
   "license": "MIT",
   "dependencies": {
     "express": "~4.16.1",
     "morgan": "~1.9.0",
-    "mongoose" : "~4.11.14",
+    "mongoose": "~4.11.14",
     "body-parser": "~1.18.2"
   }
 }
