@@ -6,7 +6,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const morgan = require('morgan')
-
+const mongoose = require('mongoose')
 
 // Configure our app
 app.use(morgan('dev')) // log requests to the console
@@ -20,16 +20,40 @@ const port = process.env.PORT || 8080 // set our port
 
 
 //- DATABASE SETUP
-const MongoClient = require('mongodb').MongoClient
-let database
+//- Database and Bear model.
+const dbOpts = {
+    uri: 'mongodb://localhost:27017/ExpressApi',
+    opts: {promiseLibrary: require('bluebird')}
+}
 
-MongoClient.connect('mongodb://localhost:27017/ExpressApi', function (err, _database) {
-    if (err) throw err
+let dbConn
+let dbName
 
-    console.log('Connected to database: ' + _database.databaseName)
+const dbConnect = (_dbOpts) => {
+    mongoose.Promise = _dbOpts.opts.promiseLibrary
+    mongoose.connect(_dbOpts.uri, {
+        useMongoClient: true,
+        /* other options */
+        socketTimeoutMS: 0,
+        keepAlive: true,
+        reconnectTries: 30,
+    })
+    dbConn = mongoose.connection
 
-    database = _database
-})
+    dbConn.on('error', (err) => {
+        if (err) throw err
+    })
+
+    dbName = dbConn.name
+
+    dbConn.once('open', () => {
+        console.log('Connected to process ' + process.pid)
+        console.log('Database name: ', dbName)
+    })
+}
+
+// Running connection to database.
+dbConnect(dbOpts)
 
 
 // Bear models lives here

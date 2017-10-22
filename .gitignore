@@ -30,6 +30,6 @@ node_modules
 # Npm lock files
 yarn.lock
 data/mongodb.config
-data/BstDstnyExpressApi
-data/logs
+data/ExpressApi
 !data/logs/.empty
+data/logs/
