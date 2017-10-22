@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost:27017/Express-api') // connect to our data
 
 // Handle the connection event
 const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:')
+db.on('error', console.error.bind(console, 'connection error:'))
 
 db.once('open', function () {
     console.log("DB connection alive")
@@ -45,7 +45,7 @@ const router = express.Router()
 // middleware to use for all requests
 router.use(function (req, res, next) {
     // do logging
-    console.log('Something is happening.'
+    console.log('Something is happening.')
     next()
 })
 
