@@ -2,6 +2,7 @@
 const express = require('express') // call express
 const app = express() // define our app using express
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
 
 //- Configure app to user bodyParser()
@@ -26,16 +27,39 @@ router.use(function (req, res, next) {
 
 
 //- Database and Bear model.
-const MongoClient = require('mongodb').MongoClient
-let database
+const dbOpts = {
+    uri: 'mongodb://localhost:27017/BstDstnyExpressApi',
+    opts: { promiseLibrary: require('bluebird') }
+}
 
-MongoClient.connect('mongodb://localhost:27017/BstDstnyExpressApi', function (err, _database) {
-    if (err) throw err
+let dbConn
+let dbName
 
-    console.log('Connected to database: ' + _database.databaseName)
+const dbConnect = (_dbOpts) => {
+    mongoose.Promise = _dbOpts.opts.promiseLibrary
+    mongoose.connect(_dbOpts.uri, {
+        useMongoClient: true,
+        /* other options */
+        socketTimeoutMS: 0,
+        keepAlive: true,
+        reconnectTries: 30,
+    })
+    dbConn = mongoose.connection
 
-    database = _database
-})
+    dbConn.on('error', (err) => {
+        if (err) throw err
+    })
+
+    dbName = dbConn.name
+
+    dbConn.once('open', () => {
+        console.log('Connected to process ' + process.pid)
+        console.log('Database name: ', dbName)
+    })
+}
+
+// Running connection to database.
+dbConnect(dbOpts)
 
 // Using our models.
 const Bear = require('./app/models/bear')
