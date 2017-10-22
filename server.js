@@ -20,15 +20,15 @@ const port = process.env.PORT || 8080 // set our port
 
 
 //- DATABASE SETUP
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/Express-api') // connect to our database
+const MongoClient = require('mongodb').MongoClient
+let database
 
-// Handle the connection event
-const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
+MongoClient.connect('mongodb://localhost:27017/ExpressApi', function (err, _database) {
+    if (err) throw err
 
-db.once('open', function () {
-    console.log("DB connection alive")
+    console.log('Connected to database: ' + _database.databaseName)
+
+    database = _database
 })
 
 
@@ -61,7 +61,7 @@ router.route('/bears')
 // create a bear (accessed at POST http://localhost:8080/bears)
     .post(function (req, res) {
 
-        let bear = new Bear()		// create a new instance of the Bear model
+        let bear = new Bear() // create a new instance of the Bear model
         bear.name = req.body.name  // set the bears name (comes from the request)
 
         bear.save(function (err) {
