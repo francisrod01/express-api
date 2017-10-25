@@ -74,7 +74,26 @@ router.get('/', function (req, res) {
 
 
 //- More routes for our API will happen here.
-//
+
+// on routes that end in /bears
+router.route('/bears')
+    // Create a bear (accessed at POST http://localhost:8080/api/bears)
+    .post(function (req, res) {
+        // Create the new instance of the Bear model.
+        let bear = new Bear();
+
+        // Set the bears name (comes from the request).
+        bear.name = req.body.name
+
+        // Save the bear and check for errors.
+        bear.save(function (err) {
+            if (err) {
+                res.send(err)
+            }
+
+            res.json({message: 'Bear created!'})
+        })
+    })
 
 
 //- Register our routes.
