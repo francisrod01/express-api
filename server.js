@@ -74,6 +74,7 @@ router.get('/', function (req, res) {
 
 
 //- More routes for our API will happen here.
+//
 
 // on routes that end in /bears
 router.route('/bears')
@@ -104,6 +105,21 @@ router.route('/bears')
             }
 
             res.json(bears)
+        })
+    })
+
+
+// on routes that end in /bears/:bear_id
+router.route('/bears/:bear_id')
+
+    // Get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
+    .get(function (req, res) {
+        Bear.findById(req.params.bear_id, function (err, bear) {
+            if (err) {
+                res.send(err)
+            }
+
+            res.json(bear)
         })
     })
 
