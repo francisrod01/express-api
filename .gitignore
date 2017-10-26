@@ -3,6 +3,6 @@
 node_modules/
 yarn.lock
 data/mongodb.config
-data/BstDstnyExpressApi
+data/ExpressApi
 data/logs
 !data/logs/.empty

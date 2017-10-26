@@ -28,7 +28,7 @@ router.use(function (req, res, next) {
 
 //- Database and Bear model.
 const dbOpts = {
-    uri: 'mongodb://localhost:27017/BstDstnyExpressApi',
+    uri: 'mongodb://localhost:27017/ExpressApi',
     opts: { promiseLibrary: require('bluebird') }
 }
 
