@@ -1,5 +1,5 @@
 logpath=logs/mongo.log
 
 # put your path to your MongoDB location here
-dbpath=~/data/BstDstnyExpressApi
+dbpath=~/data/ExpressApi
 rest=true

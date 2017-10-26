@@ -20,7 +20,6 @@ const port = process.env.PORT || 8080 // set our port
 
 
 //- DATABASE SETUP
-//- Database and Bear model.
 const dbOpts = {
     uri: 'mongodb://localhost:27017/ExpressApi',
     opts: {promiseLibrary: require('bluebird')}
@@ -89,8 +88,9 @@ router.route('/bears')
         bear.name = req.body.name  // set the bears name (comes from the request)
 
         bear.save(function (err) {
-            if (err)
+            if (err) {
                 res.send(err)
+            }
 
             res.json({message: 'Bear created!'})
         })
