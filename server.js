@@ -20,6 +20,7 @@ const port = process.env.PORT || 8080 // set our port
 
 
 //- DATABASE SETUP
+// =============================================================================
 const dbOpts = {
     uri: 'mongodb://localhost:27017/ExpressApi',
     opts: {promiseLibrary: require('bluebird')}
