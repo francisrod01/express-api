@@ -123,6 +123,29 @@ router.route('/bears/:bear_id')
         })
     })
 
+    // Update the bear with this id (accessed at PUT http://localhost:8080/api/bears/:bear_id)
+    .put(function (req, res) {
+
+        // Use our bear model to find the bear we want.
+        Bear.findById(req.params.bear_id, function (err, bear) {
+            if (err) {
+                res.send(err)
+            }
+
+            // Update the bear info.
+            bear.name = req.body.name
+
+            // Save the bear data.
+            bear.save(function (err) {
+                if (err) {
+                    res.send(err)
+                }
+
+                res.json({message: 'Bear updated!'})
+            })
+        })
+    })
+
 
 //- Register our routes.
 // All of our routes will be prefixed with /api
